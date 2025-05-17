@@ -23,5 +23,5 @@ while game_is_on:
 
     slippy.move()
 
-
+# this doesn't actually work at the moment, you'll need to close the window.
 screen.exitonclick()
