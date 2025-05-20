@@ -34,6 +34,12 @@ while game_is_on:
         scoreboard.add_score()
         scoreboard.update_scoreboard()
 
+        if snake_hits_wall() or snake_hits_tail():
+            game_is_on = False
+            scoreboard.game_over()
+
+        # Add collision detection for walls and tail to snake.py (these functions don't exist right now)
+
 
 # this doesn't actually work at the moment, you'll need to close the window.
 screen.exitonclick()
