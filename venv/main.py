@@ -1,6 +1,7 @@
 from turtle import Screen
 from snake import Snake
 from food import Food
+from scoreboard import Scoreboard
 import time
 
 
@@ -12,6 +13,7 @@ screen.tracer(0)
 
 slippy = Snake()
 food = Food()
+scoreboard = Scoreboard()
 
 screen.listen()
 screen.onkey(slippy.up, "w")
@@ -28,7 +30,10 @@ while game_is_on:
 
     # collision detection
     if slippy.head.distance(food) < 15:
-        print("nom nom nom")
+        food.refresh()
+        scoreboard.addScore()
+
+
 
 # this doesn't actually work at the moment, you'll need to close the window.
 screen.exitonclick()
