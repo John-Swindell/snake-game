@@ -31,8 +31,8 @@ while game_is_on:
     # collision detection
     if slippy.head.distance(food) < 15:
         food.refresh()
-        scoreboard.addScore()
-
+        scoreboard.add_score()
+        scoreboard.update_scoreboard()
 
 
 # this doesn't actually work at the moment, you'll need to close the window.
