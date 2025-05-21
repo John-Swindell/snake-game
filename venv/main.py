@@ -6,12 +6,12 @@ import time
 
 
 def snake_hits_wall():
-    if slippy.head.xcor() > 290 or slippy.head.xcor() < -290 or slippy.head.ycor() > 290 or slippy.head.ycor() < -290:
+    if slippy.head.xcor() > 270 or slippy.head.xcor() < -280 or slippy.head.ycor() > 280 or slippy.head.ycor() < -270:
         return True
 
 
 def snake_hits_tail():
-    for body in slippy.body[2::]:
+    for body in slippy.body[2:]:
         if slippy.head.distance(body) < 10:
             return True
 
