@@ -5,6 +5,17 @@ from scoreboard import Scoreboard
 import time
 
 
+def snake_hits_wall():
+    if slippy.head.xcor() > 290 or slippy.head.xcor() < -290 or slippy.head.ycor() > 290 or slippy.head.ycor() < -290:
+        return True
+
+
+def snake_hits_tail():
+    for body in slippy.body[2::]:
+        if slippy.head.distance(body) < 10:
+            return True
+
+
 screen = Screen()
 screen.setup(width=600, height=600)
 screen.bgcolor("black")
@@ -23,23 +34,37 @@ screen.onkey(slippy.right, "d")
 
 game_is_on = True
 while game_is_on:
-    screen.update()
-    # raise for slower game, lower for faster
-    time.sleep(0.05)
+    # snake movement
     slippy.move()
 
-    # collision detection
+    # collision with food
     if slippy.head.distance(food) < 15:
         food.refresh()
+        slippy.extend()
         scoreboard.add_score()
+        # scoreboard.update_scoreboard() # Moved to a general update spot
+
+    # collision with wall or tail
+    if snake_hits_wall() or snake_hits_tail():
+        game_is_on = False
+
+    if game_is_on:
         scoreboard.update_scoreboard()
+    else:
+        scoreboard.game_over()
 
-        if snake_hits_wall() or snake_hits_tail():
-            game_is_on = False
-            scoreboard.game_over()
+    # update screen to draw all changes for current frame
+    screen.update()
 
-        # Add collision detection for walls and tail to snake.py (these functions don't exist right now)
+    # game speed control
+    if game_is_on: # only sleep if game is still running
+        time.sleep(0.07)
+    else:
+        pass
 
 
-# this doesn't actually work at the moment, you'll need to close the window.
+# The screen.exitonclick() will keep the window with the last drawn frame (including "Game Over")
+screen.exitonclick()
+
+
 screen.exitonclick()
