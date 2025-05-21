@@ -63,8 +63,5 @@ while game_is_on:
         pass
 
 
-# The screen.exitonclick() will keep the window with the last drawn frame (including "Game Over")
-screen.exitonclick()
-
-
+# screen.exitonclick() will keep window with last drawn frame
 screen.exitonclick()
