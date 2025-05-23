@@ -42,7 +42,6 @@ while game_is_on:
         food.refresh()
         slippy.extend()
         scoreboard.add_score()
-        # scoreboard.update_scoreboard() # Moved to a general update spot
 
     # collision with wall or tail
     if snake_hits_wall() or snake_hits_tail():
